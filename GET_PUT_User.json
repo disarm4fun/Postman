@@ -1,0 +1,4936 @@
+{
+	"info": {
+		"_postman_id": "b4a2ccbb-a15c-4bc3-a77d-ed36c3482f62",
+		"name": "DZ3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25603238"
+	},
+	"item": [
+		{
+			"name": "Auth user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var tokenUser = pm.response.json();\r",
+							"pm.collectionVariables.set(\"token\",tokenUser.token);\r",
+							"\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.username).to.eql(\"ooqyejepelpfxpproyrm\");\r",
+							"});\r",
+							"pm.test(\"The response body includes token\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.token).to.eql(\"54a1c724c1b3d7d13543d0055d3aea54\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response body includes roles\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.roles).to.eql([\r",
+							"        \"R_DUMMY\",\r",
+							"        \"R_USER\",\r",
+							"        \"P_SUPPORT_MESSAGE_L\",\r",
+							"        \"P_POST_L\",\r",
+							"        \"P_POST_C\",\r",
+							"        \"P_POST_R\",\r",
+							"        \"P_POST_U\",\r",
+							"        \"P_POST_D\",\r",
+							"        \"P_USER_R\",\r",
+							"        \"P_USER_U\",\r",
+							"        \"P_USER_LOGOUT\",\r",
+							"        \"P_USER_LOGIN\"\r",
+							"    ]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "546858e84e",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/login",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Запрос на себя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.firstName).to.eql(\"ooqyejepelpf\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.username).to.eql(\"ooqyejepelpfxpproyrm\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/api/users/profile/12277",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"api",
+						"users",
+						"profile",
+						"12277"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Запрос на другого пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.firstName).to.eql(\"Polina\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.lastName).to.eql(\"Member\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.phone).to.eql(\"82995745881\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.sex).to.eql(\"female\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.birthDate).to.eql(\"2029-06-08T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.avatar.id).to.eql(null);\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.avatar.cdnUrl).to.eql(\"\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.updatedAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/api/users/profile/9857",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"api",
+						"users",
+						"profile",
+						"9857"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Запрос  с неавторизованого пользователя на другого пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.firstName).to.eql(\"Polina\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.lastName).to.eql(\"Member\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.phone).to.eql(\"82995745881\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.sex).to.eql(\"female\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.birthDate).to.eql(\"2029-06-08T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.avatar.id).to.eql(null);\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.avatar.cdnUrl).to.eql(\"\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.updatedAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/api/users/profile/9857",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"api",
+						"users",
+						"profile",
+						"9857"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Запрос  с неавторизованого пользователя на свой id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.firstName).to.eql(\"Polina\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.lastName).to.eql(\"Member\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.phone).to.eql(\"82995745881\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.sex).to.eql(\"female\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.birthDate).to.eql(\"2029-06-08T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.avatar.id).to.eql(null);\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.avatar.cdnUrl).to.eql(\"\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.updatedAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/api/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"api",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Запрос на несуществующего пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.firstName).to.eql(\"Polina\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.lastName).to.eql(\"Member\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.phone).to.eql(\"82995745881\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.sex).to.eql(\"female\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.birthDate).to.eql(\"2029-06-08T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.avatar.id).to.eql(null);\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.avatar.cdnUrl).to.eql(\"\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.updatedAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/api/users/profile/985712321",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"api",
+						"users",
+						"profile",
+						"985712321"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля без токена",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.avatar.id).to.eql();\r",
+							"    pm.expect(jsonData.item.avatar.cdnUrl).to.eql(\"\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.updatedAt).to.eql(\"2023-05-14T10:35:16+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима1",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас1",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение чужого пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.avatar.id).to.eql();\r",
+							"    pm.expect(jsonData.item.avatar.cdnUrl).to.eql(\"http://test-stand.gb.ru/files/public/image/335148627c4f8fc9e3ce09222bb8e7f4.jpg\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.updatedAt).to.eql(\"2023-05-14T10:35:16+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Desktop/Screenshot_1.png"
+						},
+						{
+							"key": "firstName",
+							"value": "Димаssad",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димасasd",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745888",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-03",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9857",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9857"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение профиля с аватаром",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/Telegram Desktop/image_2023-01-02_21-35-53.png"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение профиля без аватара",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение профиля c другим форматом аватара",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Desktop/6oa.gif"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение профиля аватара больше 2мб",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Desktop/172724-nacionalnyj_park_banf-nacionalnyj_park_joho_v_kanade-luk_river_trejl-oblako-rastenie-7680x4320.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля firstname 3 символа",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дим\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дим",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля firstname 2 символа",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Ди\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Ди",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля firstname 21 символ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"axoryntkgeawdiceelfdd\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "axoryntkgeawdiceelfdd",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля lastname 3 символа",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дим3\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Дим\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дим3",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Дим",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля firstname 20 символов",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"ooqyejepelpfxpproyrm\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "ooqyejepelpfxpproyrm",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля lastname 20 символов",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дим3\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"ooqyejepelpfxpproyrm\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дим3",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "ooqyejepelpfxpproyrm",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля lastname 2 символа",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дим3\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Ди\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дим3",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Ди",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля lastname 21 символ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дим3\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"axoryntkgeawdiceelfdd\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дим3",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "axoryntkgeawdiceelfdd",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля username 3 символа",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дим3\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Дим\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Pol\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дим3",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Дим",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Pol",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля username 20 символов",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"ooqyejepelpf\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"ooqyejepelpfxpproyrm\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "ooqyejepelpf",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "ooqyejepelpfxpproyrm",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля phone 10 символов без +",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "ooqyejepelpf",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "ooqyejepelpfxpproyrm",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "8299574886",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля phone 11 символов без +",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "ooqyejepelpf",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "ooqyejepelpfxpproyrm",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995748863",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля phone 12 символов без +",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "ooqyejepelpf",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "ooqyejepelpfxpproyrm",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "829957488631",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля phone 10 символов c + в начале",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "ooqyejepelpf",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "ooqyejepelpfxpproyrm",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "+8299574886",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля phone 11 символов c + в начале",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "ooqyejepelpf",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "ooqyejepelpfxpproyrm",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "+82995748869",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля phone 12 символов c + в начале",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "ooqyejepelpf",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "ooqyejepelpfxpproyrm",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "+829957488691",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля phone  9 символов",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "ooqyejepelpf",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "ooqyejepelpfxpproyrm",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "895758833",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля phone  13 символов",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "ooqyejepelpf",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "ooqyejepelpfxpproyrm",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "8957588331111",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля возраст 7 лет",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2016-11-01T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2016-11-01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля возраст 100 лет",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"1923-11-01T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1923-11-01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля возраст другой формат",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2001-12-13T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "13-12-2001",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля возраст 6 лет",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2017-11-01T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2017-11-01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля возраст 101 год",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"1922-11-01T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1922-11-01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{neg}Измение своего профиля пол не выбран",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(null);\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля все поля пустые",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(500);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "firstName",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля на не уникальный логин",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"Дима\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас123\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"disarm4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Дима",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас123",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "disarm4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Измение своего профиля не заполнено одно из обязательных полей(firstName)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(400);\r",
+							"});\r",
+							"pm.test(\"The response body includes id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.id).to.eql(9856);\r",
+							"});\r",
+							"pm.test(\"The response body includes firstName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.firstName).to.eql(\"\");\r",
+							"});\r",
+							"pm.test(\"The response body includes lastName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.lastName).to.eql(\"Димас\");\r",
+							"});\r",
+							"pm.test(\"The response body includes username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.username).to.eql(\"Polina4fun\");\r",
+							"});\r",
+							"pm.test(\"The response body includes phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.phone).to.eql(\"82995745887\");\r",
+							"});\r",
+							"pm.test(\"The response body includes status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"The response body includes sex\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.sex).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"The response body includes birthDate\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.birthDate).to.eql(\"2000-01-02T00:00:00+00:00\");\r",
+							"});\r",
+							"pm.test(\"The response body includes avatar \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"avatar\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"cdnUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"The response body includes updatedAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});\r",
+							"pm.test(\"The response body includes createdAt\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.item.createdAt).to.eql(\"2023-05-08T14:03:48+00:00\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/joyez/Downloads/xVgoRFvUrxA.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Димас",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Polina4fun",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "82995745887",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2000-01-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/users/profile/9856",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"users",
+						"profile",
+						"9856"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
